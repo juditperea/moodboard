@@ -1,16 +1,36 @@
-import './App.css'
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+
+import Dashboard from "./pages/Dashboard";
+import Search from "./pages/Search";
+import MyPage from "./pages/MyPage";
+import MainLayout from "./layouts/MainLayout";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <MainLayout />,
+    children: [
+      {
+        index: true,
+        element: <Dashboard />,
+      },
+      {
+        path: "search",
+        element: <Search />,
+      },
+      {
+        path: "mypage",
+        element: <MyPage />,
+      },
+    ],
+  },
+]);
 
 function App() {
-
-  return (
-    <>
-      <div id="main" className="min-h-screen bg-neutral-950 text-white flex items-center justify-center">
-        <h1 className="text-5xl font-bold">
-          Moodboard
-        </h1>
-      </div>
-    </>
-  )
+  return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;
