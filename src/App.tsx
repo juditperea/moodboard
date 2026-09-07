@@ -7,6 +7,7 @@ import Dashboard from "./pages/Dashboard";
 import Search from "./pages/Search";
 import MyPage from "./pages/MyPage";
 import MainLayout from "./layouts/MainLayout";
+//Dark/Light mode
 
 const router = createBrowserRouter([
   {
