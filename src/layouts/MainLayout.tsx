@@ -5,7 +5,7 @@ import { FavoritesProvider } from "../context/FavoritesContext";
 function MainLayout() {
   return (
     <FavoritesProvider>
-      <div className="min-h-screen bg-neutral-950 text-white">
+      <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
         <Navbar />
         <Outlet />
       </div>

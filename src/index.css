@@ -1,1 +1,90 @@
 @import "tailwindcss";
+
+@theme {
+	--font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	--color-background: var(--background);
+	--color-surface: var(--surface);
+	--color-surface-raised: var(--surface-raised);
+	--color-foreground: var(--foreground);
+	--color-muted: var(--muted);
+	--color-border: var(--border);
+	--color-border-strong: var(--border-strong);
+	--color-accent: var(--accent);
+	--color-accent-strong: var(--accent-strong);
+	--color-accent-foreground: var(--accent-foreground);
+}
+
+:root {
+	color-scheme: light;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	--background: #efede8;
+	--surface: #f8f7f3;
+	--surface-raised: #ffffff;
+	--foreground: #171719;
+	--muted: #68656a;
+	--border: #b8b5b0;
+	--border-strong: #2a292c;
+	--accent: #186ae4;
+	--accent-strong: #186ae4;
+	--accent-foreground: #fffaf5;
+}
+
+:root[data-theme="dark"] {
+	color-scheme: dark;
+	--background: #171719;
+	--surface: #202125;
+	--surface-raised: #292b30;
+	--foreground: #f2efe9;
+	--muted: #aaa7a4;
+	--border: #555860;
+	--border-strong: #d1d0ca;
+	--accent: #186ae4;
+	--accent-strong: #5f8bea;
+	--accent-foreground: #fff8f2;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	background: var(--background);
+}
+
+body {
+	margin: 0;
+	min-width: 320px;
+	background: var(--background);
+	color: var(--foreground);
+}
+
+button,
+input {
+	font: inherit;
+}
+
+button,
+a,
+input {
+	outline-color: var(--accent-strong);
+	outline-offset: 3px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+	outline: 2px solid var(--accent-strong);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		scroll-behavior: auto !important;
+		transition-duration: 0.01ms !important;
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+	}
+}

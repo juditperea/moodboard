@@ -7,7 +7,7 @@ import Dashboard from "./pages/Dashboard";
 import Search from "./pages/Search";
 import MyPage from "./pages/MyPage";
 import MainLayout from "./layouts/MainLayout";
-//Dark/Light mode
+import { ThemeProvider } from "./context/ThemeContext";
 
 const router = createBrowserRouter([
   {
@@ -31,7 +31,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <ThemeProvider>
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  );
 }
 
 export default App;

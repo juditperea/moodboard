@@ -11,7 +11,7 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
   return (
     //ahora elegimos un grid sencillo pero luego fuera de aqui haremos la logica
     //para cambiar el layout con un boton
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-4 gap-6 p-6">
+    <div className="grid grid-cols-2 gap-6 py-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-4">
       {images.map((image) => (
         <ImageCard
           key={image.id}

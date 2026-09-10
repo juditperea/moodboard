@@ -15,7 +15,7 @@ export default function ImageCard({ image }: ImageCardProps) {
   const imageIsFavorite = isFavorite(image.id)
 
   return (
-    <div className="group relative max-w-sm overflow-hidden rounded-lg">
+    <div className="group relative max-w-sm overflow-hidden border border-border bg-surface">
       <img
         src={image.src.medium}
         alt={image.alt}
@@ -27,10 +27,9 @@ export default function ImageCard({ image }: ImageCardProps) {
         aria-label={imageIsFavorite ? "Remove from favorites" : "Add to favorites"}
         className="
           absolute top-3 right-3
-          opacity-0 group-hover:opacity-100
+          opacity-100 group-hover:opacity-100 sm:opacity-0
           transition-opacity duration-200
-          bg-white text-black
-          rounded-full
+          border border-border-strong bg-surface-raised text-foreground
           w-12 h-12
           flex items-center justify-center
           cursor-pointer
