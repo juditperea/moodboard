@@ -17,7 +17,7 @@ export default function ImageCard({ image }: ImageCardProps) {
   return (
     <div className="group relative max-w-sm overflow-hidden rounded-lg">
       <img
-        src={image.url}
+        src={image.src.medium}
         alt={image.alt}
         className="w-full h-auto object-cover"
       />
