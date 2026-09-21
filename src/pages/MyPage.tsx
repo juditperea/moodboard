@@ -1,5 +1,5 @@
-import ImageGallery from "../components/ImageGallery";
-import { useFavorites } from "../context/FavoritesContext";
+import ImageGallery from "../components/ImageGallery"
+import { useFavorites } from "../context/FavoritesContext"
 
 function MyPage() {
   const { favorites } = useFavorites()
@@ -16,7 +16,7 @@ function MyPage() {
         <p className="border border-border bg-surface px-4 py-8 text-sm uppercase tracking-[0.14em] text-muted">No saved images yet.</p>
       )}
     </main>
-  );
+  )
 }
 
-export default MyPage;
+export default MyPage

@@ -1,4 +1,4 @@
-import type Image from "../components/Image";
+import type Image from "../components/Image"
 
 const mockImages: Image[] = [
     {
@@ -130,6 +130,6 @@ const mockImages: Image[] = [
         alt: "Example image 8",
     },
 
-];
+]
 
 export default mockImages

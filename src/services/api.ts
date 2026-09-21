@@ -18,8 +18,19 @@ type PexelsPhoto = {
 }
 
 type PexelsSearchResponse = {
+	page: number
+	per_page: number
+	total_results: number
 	photos: PexelsPhoto[]
 }
+
+export type PaginatedImages = {
+	images: Image[]
+	page: number
+	hasMore: boolean
+}
+
+export const PAGINATION_SIZE = 60
 
 function isPexelsPhoto(value: unknown): value is PexelsPhoto {
 	if (typeof value !== "object" || value === null) return false
@@ -59,14 +70,18 @@ function toImage(photo: PexelsPhoto): Image {
 	}
 }
 
-export async function searchImages(query: string): Promise<Image[]> {
+export async function searchImages(
+	query: string,
+	page: number,
+	perPage = PAGINATION_SIZE
+): Promise<PaginatedImages> {
 	const apiKey = import.meta.env.VITE_PEXELS_API_KEY
 	if (!apiKey) {
 		throw new Error("Pexels API key is not configured")
 	}
 
 	const response = await fetch(
-		`https://api.pexels.com/v1/search?query=${encodeURIComponent(query)}`,
+		`https://api.pexels.com/v1/search?query=${encodeURIComponent(query)}&page=${page}&per_page=${perPage}`,
 		{
 			headers: {
 				Authorization: apiKey,
@@ -82,11 +97,20 @@ export async function searchImages(query: string): Promise<Image[]> {
 	if (
 		typeof data !== "object" ||
 		data === null ||
-		!Array.isArray((data as Record<string, unknown>).photos)
+		!Array.isArray((data as Record<string, unknown>).photos) ||
+		typeof (data as Record<string, unknown>).page !== "number" ||
+		typeof (data as Record<string, unknown>).per_page !== "number" ||
+		typeof (data as Record<string, unknown>).total_results !== "number"
 	) {
 		throw new Error("Invalid Pexels response")
 	}
 
-	const photos = (data as PexelsSearchResponse).photos
-	return photos.filter(isPexelsPhoto).map(toImage)
+	const responseData = data as PexelsSearchResponse
+	const images = responseData.photos.filter(isPexelsPhoto).map(toImage)
+
+	return {
+		images,
+		page: responseData.page,
+		hasMore: images.length > 0 && responseData.page * responseData.per_page < responseData.total_results,
+	}
 }

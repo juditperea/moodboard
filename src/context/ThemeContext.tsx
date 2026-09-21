@@ -11,7 +11,9 @@ function getInitialTheme(): Theme {
     // Use the system preference when browser storage is unavailable.
   }
 
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+  return typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light"
 }
 
 type ThemeProviderProps = {
@@ -26,14 +28,24 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     document.documentElement.style.colorScheme = theme
 
     try {
-      localStorage.setItem(THEME_STORAGE_KEY, theme)
+      if (localStorage.getItem(THEME_STORAGE_KEY)) {
+        localStorage.setItem(THEME_STORAGE_KEY, theme)
+      }
     } catch {
       // Keep the selected theme active for the current session.
     }
   }, [theme])
 
   function toggleTheme() {
-    setTheme((currentTheme) => currentTheme === "dark" ? "light" : "dark")
+    setTheme((currentTheme) => {
+      const nextTheme = currentTheme === "dark" ? "light" : "dark"
+      try {
+        localStorage.setItem(THEME_STORAGE_KEY, nextTheme)
+      } catch {
+        // Keep the selected theme active for the current session.
+      }
+      return nextTheme
+    })
   }
 
   return (

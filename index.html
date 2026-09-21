@@ -5,6 +5,23 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>moodboard</title>
+    <script>
+      (() => {
+        let storedTheme = null
+        try {
+          storedTheme = localStorage.getItem("moodboard:theme")
+        } catch {
+          // Use the system preference when browser storage is unavailable.
+        }
+        const theme = storedTheme === "light" || storedTheme === "dark"
+          ? storedTheme
+          : window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light"
+        document.documentElement.dataset.theme = theme
+        document.documentElement.style.colorScheme = theme
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

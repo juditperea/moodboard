@@ -1,5 +1,5 @@
-import { NavLink } from "react-router-dom";
-import { useTheme } from "../context/useTheme";
+import { NavLink } from "react-router-dom"
+import { useTheme } from "../context/useTheme"
 
 function Navbar() {
   const { theme, toggleTheme } = useTheme()
@@ -49,7 +49,7 @@ function Navbar() {
         </div>
       </div>
     </nav>
-  );
+  )
 }
 
-export default Navbar;
+export default Navbar

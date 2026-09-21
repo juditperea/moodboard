@@ -1,6 +1,6 @@
-import { Outlet } from "react-router-dom";
-import Navbar from "../components/Navbar";
-import { FavoritesProvider } from "../context/FavoritesContext";
+import { Outlet } from "react-router-dom"
+import Navbar from "../components/Navbar"
+import { FavoritesProvider } from "../context/FavoritesContext"
 
 function MainLayout() {
   return (
@@ -10,7 +10,7 @@ function MainLayout() {
         <Outlet />
       </div>
     </FavoritesProvider>
-  );
+  )
 }
 
-export default MainLayout;
+export default MainLayout

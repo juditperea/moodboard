@@ -3,8 +3,8 @@
 //cambiar estilos de hover. Al hacer doble click aparecera una animacion de un corazon y se guarda tb
 
 
-import type Image from "./Image";
-import { useFavorites } from "../context/FavoritesContext";
+import type Image from "./Image"
+import { useFavorites } from "../context/FavoritesContext"
 
 type ImageCardProps = {
   image: Image
@@ -24,10 +24,11 @@ export default function ImageCard({ image }: ImageCardProps) {
 
       <button
         onClick={() => toggleFavorite(image)}
+        aria-pressed={imageIsFavorite}
         aria-label={imageIsFavorite ? "Remove from favorites" : "Add to favorites"}
         className="
           absolute top-3 right-3
-          opacity-100 group-hover:opacity-100 sm:opacity-0
+          opacity-100 group-hover:opacity-100 focus-visible:opacity-100 sm:opacity-0
           transition-opacity duration-200
           border border-border-strong bg-surface-raised text-foreground
           w-12 h-12
