@@ -8,18 +8,24 @@ import { useFavorites } from "../context/FavoritesContext"
 
 type ImageCardProps = {
   image: Image
+  variant?: "natural" | "cropped"
+  imageSizes?: string
 }
 
-export default function ImageCard({ image }: ImageCardProps) {
+export default function ImageCard({ image, variant = "natural", imageSizes = "100vw" }: ImageCardProps) {
   const { isFavorite, toggleFavorite } = useFavorites()
   const imageIsFavorite = isFavorite(image.id)
 
   return (
-    <div className="group relative max-w-sm overflow-hidden border border-border bg-surface">
+    <div className={`group relative overflow-hidden border border-border bg-surface ${variant === "cropped" ? "aspect-[4/5]" : ""}`}>
       <img
         src={image.src.medium}
+        srcSet={`${image.src.small} 130w, ${image.src.medium} 350w, ${image.src.large} 940w, ${image.src.original} ${image.width}w`}
+        sizes={imageSizes}
         alt={image.alt}
-        className="w-full h-auto object-cover"
+        loading="lazy"
+        decoding="async"
+        className={variant === "cropped" ? "h-full w-full object-cover" : "h-auto w-full object-cover"}
       />
 
       <button
