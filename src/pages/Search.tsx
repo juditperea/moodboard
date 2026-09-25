@@ -41,8 +41,8 @@ function Search() {
   return (
     <main className="mx-auto min-h-screen w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       <div className="mb-8 border-b border-border pb-5">
-        <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-accent">Archive // Search</p>
-        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">Discover</h1>
+        <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-accent">ARCHIVE // SEARCH</p>
+        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">Search</h1>
       </div>
       <form onSubmit={handleSubmit} className="mb-4 flex flex-col gap-3 border border-border bg-surface p-4 sm:flex-row">
         <label htmlFor="image-search" className="sr-only">

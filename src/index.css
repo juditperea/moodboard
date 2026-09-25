@@ -26,9 +26,9 @@
 	--muted: #68656a;
 	--border: #b8b5b0;
 	--border-strong: #2a292c;
-	--accent: #2f3ff3;
-	--accent-strong: #2205c7;
-	--accent-foreground: #fffaf5;
+	--accent: #3155d9;
+	--accent-strong: #2443b8;
+	--accent-foreground: #f7f9ff;
 }
 
 :root[data-theme="dark"] {
@@ -40,9 +40,9 @@
 	--muted: #aaa7a4;
 	--border: #555860;
 	--border-strong: #d1d0ca;
-	--accent: #2d72f2;
-	--accent-strong: #070bce;
-	--accent-foreground: #fff8f2;
+	--accent: #5d7cff;
+	--accent-strong: #7f98ff;
+	--accent-foreground: #f8faff;
 }
 
 * {
