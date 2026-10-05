@@ -10,23 +10,31 @@ type ImageCardProps = {
   image: Image
   variant?: "natural" | "cropped"
   imageSizes?: string
+  onOpen: () => void
 }
 
-export default function ImageCard({ image, variant = "natural", imageSizes = "100vw" }: ImageCardProps) {
+export default function ImageCard({ image, variant = "natural", imageSizes = "100vw", onOpen }: ImageCardProps) {
   const { isFavorite, toggleFavorite } = useFavorites()
   const imageIsFavorite = isFavorite(image.id)
 
   return (
     <div className={`group relative overflow-hidden border border-border bg-surface ${variant === "cropped" ? "aspect-[4/5]" : ""}`}>
-      <img
-        src={image.src.medium}
-        srcSet={`${image.src.small} 130w, ${image.src.medium} 350w, ${image.src.large} 940w, ${image.src.original} ${image.width}w`}
-        sizes={imageSizes}
-        alt={image.alt}
-        loading="lazy"
-        decoding="async"
-        className={variant === "cropped" ? "h-full w-full object-cover" : "h-auto w-full object-cover"}
-      />
+      <button
+        type="button"
+        onClick={onOpen}
+        aria-label={`Open image details: ${image.alt || image.photographer}`}
+        className="block w-full cursor-zoom-in text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-strong"
+      >
+        <img
+          src={image.src.medium}
+          srcSet={`${image.src.small} 130w, ${image.src.medium} 350w, ${image.src.large} 940w, ${image.src.original} ${image.width}w`}
+          sizes={imageSizes}
+          alt={image.alt}
+          loading="lazy"
+          decoding="async"
+          className={variant === "cropped" ? "h-full w-full object-cover" : "h-auto w-full object-cover"}
+        />
+      </button>
 
       <button
         onClick={() => toggleFavorite(image)}

@@ -58,15 +58,15 @@ function Navbar() {
 
   return (
     <header className="border-b border-border bg-surface/90 text-foreground backdrop-blur-sm">
-      <nav aria-label="Main navigation" className="mx-auto w-full max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex min-w-0 items-center gap-4">
-            <span className="text-sm font-bold uppercase tracking-[0.24em] text-accent">
+      <nav aria-label="Main navigation" className="mx-auto w-full max-w-7xl px-3 py-3 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between gap-2 sm:gap-4">
+          <div className="flex min-w-0 items-center gap-2">
+            <span className="truncate text-[0.7rem] font-bold uppercase tracking-[0.2em] text-accent sm:text-sm sm:tracking-[0.24em]">
               Moodboard / 001
             </span>
           </div>
 
-          <div className="hidden items-center gap-6 md:flex">
+          <div className="hidden items-center gap-3 md:flex md:gap-6">
             {navigationItems.map((item) => (
               <NavLink
                 key={item.to}
@@ -82,9 +82,9 @@ function Navbar() {
               onClick={toggleTheme}
               aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
               aria-pressed={theme === "dark"}
-              className="border border-border-strong bg-surface-raised px-3 py-2 text-[0.68rem] font-bold uppercase tracking-[0.16em] text-foreground transition-colors hover:border-accent hover:text-accent"
+              className="shrink-0 border border-border-strong bg-surface-raised px-3 py-2 text-[0.68rem] font-bold uppercase tracking-[0.16em] text-foreground transition-colors hover:border-accent hover:text-accent"
             >
-              {theme === "dark" ? "LIGHT" : "THEME"}
+              {theme === "dark" ? "LIGHT" : "DARK"}
             </button>
           </div>
 
@@ -95,7 +95,7 @@ function Navbar() {
               aria-expanded={isMenuOpen}
               aria-controls="mobile-navigation-panel"
               onClick={() => setIsMenuOpen((previous) => !previous)}
-              className="border border-border-strong bg-surface-raised px-3 py-2 text-[0.68rem] font-bold uppercase tracking-[0.18em] text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-strong"
+              className="shrink-0 border border-border-strong bg-surface-raised px-2.5 py-2 text-[0.62rem] font-bold uppercase tracking-[0.16em] text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-strong"
             >
               Menu
             </button>
@@ -106,7 +106,7 @@ function Navbar() {
           <div
             ref={menuRef}
             id="mobile-navigation-panel"
-            className="mt-4 border border-border bg-surface p-3 md:hidden"
+            className="mt-3 border border-border bg-surface p-2 md:hidden"
           >
             <div className="flex flex-col gap-2">
               {navigationItems.map((item) => (
@@ -129,7 +129,7 @@ function Navbar() {
                 aria-pressed={theme === "dark"}
                 className="mt-1 border border-border-strong bg-surface-raised px-3 py-2 text-left text-[0.68rem] font-bold uppercase tracking-[0.18em] text-foreground transition-colors hover:border-accent hover:text-accent"
               >
-                {theme === "dark" ? "LIGHT" : "THEME"}
+                {theme === "dark" ? "LIGHT" : "DARK"}
               </button>
             </div>
           </div>

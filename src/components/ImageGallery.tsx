@@ -1,7 +1,9 @@
+import { useCallback, useState } from "react"
 import ImageCard from "./ImageCard"
 import type Image from "../components/Image"
 import GalleryLayoutSelector from "./GalleryLayoutSelector"
 import { useGalleryLayout } from "../context/useGalleryLayout"
+import ImageDetailModal from "./ImageDetailModal"
 
 type ImageGalleryProps = {
   images: Image[]
@@ -9,6 +11,8 @@ type ImageGalleryProps = {
 
 export default function ImageGallery({ images }: ImageGalleryProps) {
   const { layout } = useGalleryLayout()
+  const [selectedImage, setSelectedImage] = useState<Image | null>(null)
+  const closeModal = useCallback(() => setSelectedImage(null), [])
   const galleryClassName = layout === "masonry"
     ? "columns-1 gap-6 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5"
     : layout === "grid"
@@ -26,6 +30,7 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
           >
             <ImageCard
               image={image}
+              onOpen={() => setSelectedImage(image)}
               variant={layout === "grid" ? "cropped" : "natural"}
               imageSizes={layout === "feed"
                 ? "(max-width: 768px) calc(100vw - 2rem), 768px"
@@ -36,6 +41,7 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
           </div>
         ))}
       </div>
+      {selectedImage && <ImageDetailModal image={selectedImage} onClose={closeModal} />}
     </>
   )
 }
