@@ -1,15 +1,8 @@
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react"
+import { useEffect, useState, type ReactNode } from "react"
 import type Image from "../components/Image"
+import { FavoritesContext } from "./FavoritesContext"
 
 const FAVORITES_STORAGE_KEY = "moodboard:favorites"
-
-type FavoritesContextValue = {
-  favorites: Image[]
-  isFavorite: (imageId: number) => boolean
-  toggleFavorite: (image: Image) => void
-}
-
-const FavoritesContext = createContext<FavoritesContextValue | undefined>(undefined)
 
 function loadFavorites(): Image[] {
   try {
@@ -50,7 +43,7 @@ export function FavoritesProvider({ children }: FavoritesProviderProps) {
     try {
       localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(favorites))
     } catch {
-      // Keep favorites available in memory when browser storage is unavailable.
+      // Keep favorites available when browser storage is unavailable.
     }
   }, [favorites])
 
@@ -73,13 +66,4 @@ export function FavoritesProvider({ children }: FavoritesProviderProps) {
       {children}
     </FavoritesContext.Provider>
   )
-}
-
-export function useFavorites() {
-  const context = useContext(FavoritesContext)
-  if (!context) {
-    throw new Error("useFavorites must be used inside FavoritesProvider")
-  }
-
-  return context
 }

@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom"
 import Navbar from "../components/Navbar"
-import { FavoritesProvider } from "../context/FavoritesContext"
+import { FavoritesProvider } from "../context/FavoritesProvider"
 import { GalleryLayoutProvider } from "../context/GalleryLayoutContext"
 
 function MainLayout() {

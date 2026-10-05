@@ -1,10 +1,5 @@
-//la imagen se añadira a nuestro perfi si estamos loggeados
-//Cambiar el corazon por un simbolo y hacer animacion cuando se le haga clic y se guarde,
-//cambiar estilos de hover. Al hacer doble click aparecera una animacion de un corazon y se guarda tb
-
-
 import type Image from "./Image"
-import { useFavorites } from "../context/FavoritesContext"
+import { useFavorites } from "../context/useFavorites"
 
 type ImageCardProps = {
   image: Image

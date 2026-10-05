@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react"
 import type Image from "./Image"
-import { useFavorites } from "../context/FavoritesContext"
+import { useFavorites } from "../context/useFavorites"
 
 type ImageDetailModalProps = {
   image: Image

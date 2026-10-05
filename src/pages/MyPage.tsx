@@ -1,5 +1,5 @@
 import ImageGallery from "../components/ImageGallery"
-import { useFavorites } from "../context/FavoritesContext"
+import { useFavorites } from "../context/useFavorites"
 
 function MyPage() {
   const { favorites } = useFavorites()
