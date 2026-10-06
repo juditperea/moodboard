@@ -18,7 +18,7 @@ export default function ImageCard({ image, variant = "natural", imageSizes = "10
         type="button"
         onClick={onOpen}
         aria-label={`Open image details: ${image.alt || image.photographer}`}
-        className="block w-full cursor-zoom-in text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-strong"
+        className={`${variant === "cropped" ? "absolute inset-0 block h-full w-full" : "block h-auto w-full"} cursor-zoom-in text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-strong`}
       >
         <img
           src={image.src.medium}
@@ -27,7 +27,7 @@ export default function ImageCard({ image, variant = "natural", imageSizes = "10
           alt={image.alt}
           loading="lazy"
           decoding="async"
-          className={variant === "cropped" ? "h-full w-full object-cover" : "h-auto w-full object-cover"}
+          className={variant === "cropped" ? "block h-full w-full object-cover" : "block h-auto w-full object-cover"}
         />
       </button>
 
